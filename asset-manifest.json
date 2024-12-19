@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AR-Food/static/css/main.2ad592c5.css",
+    "main.js": "/AR-Food/static/js/main.a57587be.js",
+    "index.html": "/AR-Food/index.html",
+    "main.2ad592c5.css.map": "/AR-Food/static/css/main.2ad592c5.css.map",
+    "main.a57587be.js.map": "/AR-Food/static/js/main.a57587be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ad592c5.css",
+    "static/js/main.a57587be.js"
+  ]
+}
