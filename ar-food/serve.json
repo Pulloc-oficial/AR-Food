@@ -1,0 +1,7 @@
+{
+    "public": "./build",
+    "rewrites": [
+      { "source": "/breakfast.glb", "destination": "/public/breakfast.glb" }
+    ]
+  }
+  

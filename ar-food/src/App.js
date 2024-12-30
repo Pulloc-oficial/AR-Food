@@ -7,7 +7,7 @@ function App() {
     <div>
       <h1>Location-Based AR Landing Page</h1>
       <ThreeViewer />
-    </div>
+    </div>    
   );
 }
 
