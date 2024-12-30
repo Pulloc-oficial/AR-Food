@@ -79,7 +79,7 @@ scene.add(lightHelper);*/
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
   if (loadedModel) {
-    loadedModel.rotation.y += 0.02; // Rotar en el eje Y
+    loadedModel.rotation.y += 0.01; // Rotar en el eje Y
   }
   };
   animate();

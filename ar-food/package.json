@@ -1,5 +1,6 @@
 {
-  "homepage": "https://Pulloc-oficial.github.io/AR-Food",
+  "_comentario1-homepage-deploy": "//https://Pulloc-oficial.github.io/AR-Food",
+  "homepage": "/", 
   "name": "ar-food",
   "version": "0.1.0",
   "private": true,
