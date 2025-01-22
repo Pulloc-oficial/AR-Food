@@ -1,29 +1,55 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import * as THREE from 'three';
+
 
 const ARViewer = () => {
-  return (
-    <div>
-      <a-scene embedded arjs='sourceType: webcam; detectionMode: mono; matrixCodeType: 3x3;
-      sourceWidth: 640; sourceHeight: 480; displayWidth: 640; displayHeight: 480;'>
+  useEffect(() => {
+    // Crear la escena de A-Frame con AR.js en modo surface
+    const scene = document.createElement('a-scene');
+    scene.setAttribute('embedded', '');
+    scene.setAttribute('arjs', 'sourceType: webcam; debugUIEnabled: false; trackingMethod: best; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180; videoWidth: 1280; videoHeight: 720');
 
-<a-assets>
-    <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
-</a-assets>
+    // Crear el modelo GLTF y posicionarlo
+    const model = document.createElement('a-entity');
+    model.setAttribute('gltf-model', './assets/breakfast-food-dish/source/breakfast.glb');
+    model.setAttribute('scale', '3 3 3');
+    model.setAttribute('position', '0 0 0');
 
-<a-marker preset="hiro">
-    <a-box position='0 0.5 0' color="yellow"></a-box>
-</a-marker>
+    // Rotación infinita del modelo
+    model.setAttribute('animation', {
+      property: 'rotation',
+      to: '0 360 0',
+      loop: true,
+      dur: 10000, // 10 segundos por rotación
+      easing: 'linear',
+    });
 
-<a-marker id="animated-marker" type='barcode' value='6'>
-    <a-entity
-        gltf-model="#animated-asset"
-        scale="2">
-    </a-entity>
-</a-marker>
-<a-entity camera fov="80"></a-entity>
-</a-scene>
-          </div>
-  );
+    // Añadir el plano donde se posicionará el modelo
+    const ground = document.createElement('a-plane');
+    ground.setAttribute('position', '0 0 -10');
+    ground.setAttribute('rotation', '-90 0 0');
+    ground.setAttribute('width', '5');
+    ground.setAttribute('height', '5');
+    ground.setAttribute('color', '#ffffff');
+    ground.setAttribute('arjs-hit-test', ''); // Activar detección de planos
+
+    // Añadir eventos para colocar el modelo sobre el plano detectado
+    ground.addEventListener('click', (event) => {
+      const intersectedPoint = event.detail.intersection.point;
+      model.setAttribute('position', `${intersectedPoint.x} ${intersectedPoint.y} ${intersectedPoint.z}`);
+    });
+
+    scene.appendChild(ground);
+    scene.appendChild(model);
+    document.body.appendChild(scene);
+
+    return () => {
+      // Limpiar la escena al desmontar el componente
+      document.body.removeChild(scene);
+    };
+  }, []);
+
+  return null;
 };
 
 export default ARViewer;
