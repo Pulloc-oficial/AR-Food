@@ -1,6 +1,6 @@
 {
   "_comentario1-homepage-deploy": "//https://Pulloc-oficial.github.io/AR-Food",
-  "homepage": "/", 
+  "homepage": "/",
   "name": "ar-food",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +9,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
+    "three-gltf-loader": "^1.111.0"
+  },
+  "peerDependencies": {
     "three": "^0.171.0"
   },
   "scripts": {

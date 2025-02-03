@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { Scene, PerspectiveCamera, WebGLRenderer, AmbientLight } from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 
 const ThreeViewer = () => {
   const containerRef = useRef();
@@ -9,8 +10,8 @@ const ThreeViewer = () => {
     const container = containerRef.current;
 
     // Crear la escena
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
+    const scene = new Scene();
+    const camera = new PerspectiveCamera(
       85,
       container.clientWidth / container.clientHeight,
       0.1,
@@ -18,12 +19,12 @@ const ThreeViewer = () => {
     );
     camera.position.z = 2;
 
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new WebGLRenderer();
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
     // Añadir luz a la escena
-    const light = new THREE.AmbientLight(0xffffff, 1);
+    const light = new AmbientLight(0xffffff, 1);
     scene.add(light);
 
     // Cargar el modelo GLTF
